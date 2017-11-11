@@ -6,3 +6,6 @@
 /AspNetCoreWebApp/obj
 /.vs/AspNetCoreWebApp/v15/Server/sqlite3
 /AspNetCoreWebApp/bin/Debug/netcoreapp2.0
+/AspNetCoreWebApp.Web/bin
+/AspNetCoreWebApp.Web/obj/Debug/netcoreapp2.0
+/AspNetCoreWebApp.Web/obj
