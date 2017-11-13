@@ -1,17 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using AspNetCoreWebApp.Web.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace AspNetCoreWebApp.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
+
+        public HomeController(ILogger<HomeController> logger)
+        {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
+
         public IActionResult Index()
         {
+            _logger.LogInformation("Index page was shown.");
             return View();
         }
 
@@ -19,6 +25,7 @@ namespace AspNetCoreWebApp.Web.Controllers
         {
             ViewData["Message"] = "Your application description page.";
 
+            _logger.LogInformation("About page was shown.");
             return View();
         }
 
@@ -26,12 +33,15 @@ namespace AspNetCoreWebApp.Web.Controllers
         {
             ViewData["Message"] = "Your contact page.";
 
+            _logger.LogInformation("Contact page was shown.");
             return View();
         }
 
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var requestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            _logger.LogWarning($"Error page was shown, RequestId = {requestId}.");
+            return View(new ErrorViewModel { RequestId = requestId });
         }
     }
 }

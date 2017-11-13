@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AspNetCoreWebApp.Web.Models;
+using AspNetCoreWebApp.Web.Models.AccountViewModels;
+using AspNetCoreWebApp.Web.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using AspNetCoreWebApp.Web.Models;
-using AspNetCoreWebApp.Web.Models.AccountViewModels;
-using AspNetCoreWebApp.Web.Services;
 
 namespace AspNetCoreWebApp.Web.Controllers
 {
@@ -48,6 +44,7 @@ namespace AspNetCoreWebApp.Web.Controllers
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ViewData["ReturnUrl"] = returnUrl;
+
             return View();
         }
 
@@ -430,7 +427,6 @@ namespace AspNetCoreWebApp.Web.Controllers
             return View();
         }
 
-
         [HttpGet]
         public IActionResult AccessDenied()
         {
@@ -459,6 +455,6 @@ namespace AspNetCoreWebApp.Web.Controllers
             }
         }
 
-        #endregion
+        #endregion Helpers
     }
 }
