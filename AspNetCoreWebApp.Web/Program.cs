@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 
 namespace AspNetCoreWebApp.Web
@@ -19,6 +20,11 @@ namespace AspNetCoreWebApp.Web
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseSerilog()
+                //.UseConfiguration()
+                .ConfigureAppConfiguration(c =>
+                {
+                    c.AddJsonFile("customsettings.json");
+                })
                 .Build();
     }
 }
